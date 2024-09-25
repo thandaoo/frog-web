@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FROG - Project Management Platform, Keep Things in Motion
 
-## Getting Started
+FROG is designed to provide project-centric access for each team member, enabling efficient workload management and fostering a collaborative environment. With a focus on task tracking, centralized document storage, and seamless team collaboration, FROG aims to streamline project workflows and enhance productivity.
 
-First, run the development server:
+## 🎯 Target Audience
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Project Managers:** Simplifying workload management and progress tracking.
+- **Teams and Organizations:** Facilitating project-centric access for all team members.
+- **Collaborative Teams:** Enhancing communication and file sharing within project teams.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🗝️ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Task/Issue Tracking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Monitor project progress with detailed task tracking.
+- Create and manage TODOs and issues.
+- Generate real-time reports for better project insights.
 
-## Learn More
+### 2. Centralized Document Storage
 
-To learn more about Next.js, take a look at the following resources:
+- Organized and searchable storage for all project-related documents.
+- Supports various document types, including specifications, designs, meeting notes, and reports.
+- Easy access and version control for all project files.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Team Collaboration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Integrated chat functionality for seamless communication.
+- Secure file sharing with cloud storage integration.
+- Schedule management for effective time coordination and planning.
 
-## Deploy on Vercel
+## 🚀 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/username/frog-web.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd frog-web
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+    or
+
+    ```bash
+    yarn install
+    ```
+
+### Running the Application
+
+1. Start the development server:
+
+    ```bash
+    npm start
+    ```
+
+    or
+
+    ```bash
+    yarn start
+    ```
+
+2. Open your browser and navigate to `http://localhost:3000`.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js, TypeScript, TailwindCSS
+- **Backend:** Next.js
+- **Database:** MySQL, Prisma
+- **Deployment:** Vercel

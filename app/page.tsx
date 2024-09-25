@@ -1,10 +1,3 @@
-import HomePage from './home/page'
-
 export default function Home () {
-  return (
-    <div>
-      Hello world
-      <HomePage />
-    </div>
-  )
+  return <div>Welcome to Frog!</div>
 }
