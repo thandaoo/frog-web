@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Issues {
+model Issue {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255) // Default: varchar(191) - string up to 191 chars
   description String   @db.Text
