@@ -2,9 +2,11 @@
 
 import 'easymde/dist/easymde.min.css'
 
-import { Button, Callout, Text, TextField } from '@radix-ui/themes'
+import { Button, Callout, TextField } from '@radix-ui/themes'
 import { Controller, useForm } from 'react-hook-form'
 
+import ErrorMessage from '@/app/components/ErrorMessage'
+import Spinner from '@/app/components/Spinner'
 import axios from 'axios'
 import { createIssueSchema } from '@/app/validationSchemas'
 import dynamic from 'next/dynamic'
@@ -30,6 +32,8 @@ const NewIssuePage = () => {
     resolver: zodResolver(createIssueSchema)
   })
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+
   return (
     <div className='max-w-xl '>
       {error && (
@@ -41,19 +45,17 @@ const NewIssuePage = () => {
         className='space-y-3'
         onSubmit={handleSubmit(async data => {
           try {
+            setSubmitting(true)
             await axios.post('/api/issues', data)
             router.push('/issues')
           } catch {
+            setSubmitting(false)
             setError('An unexpected error occurred')
           }
         })}
       >
         <TextField.Root placeholder='Title' {...register('title')} />
-        {errors.title && (
-          <Text color='red' as='p'>
-            {errors.title.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name='description'
           control={control}
@@ -61,13 +63,11 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder='Description' {...field} />
           )}
         />
-        {errors.description && (
-          <Text color='red' as='p'>
-            {errors.description.message}
-          </Text>
-        )}
-
-        <Button>Submit New Issue</Button>
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+        <Button>
+          Submit New Issue
+          {submitting && <Spinner />}
+        </Button>
       </form>
     </div>
   )
