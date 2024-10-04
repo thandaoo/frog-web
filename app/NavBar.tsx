@@ -12,6 +12,7 @@ const NavBar = () => {
     { href: '/issues', label: 'Issues' }
   ]
   const currentPath = usePathname() // this is from Browser API, thus we need 'use client'
+
   return (
     <nav className='flex space-x-5 px-6 py-4 item-center border-b'>
       <Link href='/'>
@@ -23,7 +24,10 @@ const NavBar = () => {
             key={link.href}
             href={link.href}
             className={classNames({
-              'text-zinc-500': link.href === currentPath,
+              'text-zinc-700':
+                link.href.substring(2) ===
+                currentPath.substring(2, link.href.length),
+
               'text-zinc-400': link.href !== currentPath,
               'hover:text-zinc-500 transition-colors': true
             })}
@@ -34,7 +38,6 @@ const NavBar = () => {
             {link.label}
           </Link>
         ))}
-        <li></li>
       </ul>
     </nav>
   )
