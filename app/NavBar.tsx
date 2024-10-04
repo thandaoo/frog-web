@@ -14,7 +14,7 @@ const NavBar = () => {
   const currentPath = usePathname() // this is from Browser API, thus we need 'use client'
 
   return (
-    <nav className='flex space-x-5 px-6 py-4 item-center border-b'>
+    <nav className='flex space-x-5 px-6 py-4 items-center border-b'>
       <Link href='/'>
         <GiFrogFoot />
       </Link>

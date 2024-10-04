@@ -2,13 +2,10 @@ import { Link, Table } from '@radix-ui/themes'
 
 import IssueActions from './IssueActions'
 import IssueStatusBadge from '../components/IssueStatusBadge'
-import React from 'react'
-// import delay from 'delay'
 import prisma from '@/prisma/client'
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany()
-  // await delay(2000)
 
   return (
     <div className='max-w-xl'>

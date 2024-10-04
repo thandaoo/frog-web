@@ -4,9 +4,8 @@ import 'easymde/dist/easymde.min.css'
 
 import { Button, Callout, TextField } from '@radix-ui/themes'
 import { Controller, useForm } from 'react-hook-form'
+import { ErrorMessage, Spinner } from '@/app/components'
 
-import ErrorMessage from '@/app/components/ErrorMessage'
-import Spinner from '@/app/components/Spinner'
 import axios from 'axios'
 import { createIssueSchema } from '@/app/validationSchemas'
 import dynamic from 'next/dynamic'
@@ -17,6 +16,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 type IssueForm = z.infer<typeof createIssueSchema>
 
+//* Either Client or Server components, are loaded on the server for the first time.
+//* SimpleMDE uses Navigator which is Browser API, and is not available on Server. Solution: Disable SSR by Lazy Loading
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
 })
