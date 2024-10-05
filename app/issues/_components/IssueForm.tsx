@@ -8,14 +8,14 @@ import { ErrorMessage, Spinner } from '@/app/components'
 
 import { Issue } from '@prisma/client'
 import axios from 'axios'
-import { createIssueSchema } from '@/app/validationSchemas'
 import dynamic from 'next/dynamic'
+import { issueSchema } from '@/app/validationSchemas'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-type IssueFormData = z.infer<typeof createIssueSchema>
+type IssueFormData = z.infer<typeof issueSchema>
 
 //* Either Client or Server components, are loaded on the server for the first time.
 //* SimpleMDE uses Navigator which is Browser API, and is not available on Server. Solution: Disable SSR by Lazy Loading
@@ -31,7 +31,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     handleSubmit,
     formState: { errors }
   } = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema)
+    resolver: zodResolver(issueSchema)
   })
 
   const [error, setError] = useState('')
@@ -41,6 +41,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       setSubmitting(true)
       await axios.post('/api/issues', data)
       router.push('/issues')
+      router.refresh() //force to refresh the content of the current route
     } catch {
       setSubmitting(false)
       setError('An unexpected error occurred')

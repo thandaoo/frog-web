@@ -2,7 +2,7 @@ import '@radix-ui/themes/styles.css'
 import './theme-config.css'
 import './globals.css'
 
-import Footer from './components/footer'
+import Footer from './components/Footer'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import NavBar from './NavBar'
