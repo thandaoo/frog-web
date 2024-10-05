@@ -7,8 +7,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { ErrorMessage, Spinner } from '@/app/components'
 
 import { Issue } from '@prisma/client'
+import SimpleMDE from 'react-simplemde-editor'
 import axios from 'axios'
-import dynamic from 'next/dynamic'
 import { issueSchema } from '@/app/validationSchemas'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -16,12 +16,6 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 type IssueFormData = z.infer<typeof issueSchema>
-
-//* Either Client or Server components, are loaded on the server for the first time.
-//* SimpleMDE uses Navigator which is Browser API, and is not available on Server. Solution: Disable SSR by Lazy Loading
-const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
-  ssr: false
-})
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter()

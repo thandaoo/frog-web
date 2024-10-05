@@ -4,7 +4,7 @@ import { issueSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
 
 export async function PATCH(request: NextRequest, {params }:{params: {id: string}}){
-const body =await  request.json();
+const body =await request.json();
 
 const validation = issueSchema.safeParse(body);
 

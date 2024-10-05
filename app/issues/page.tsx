@@ -44,6 +44,6 @@ const IssuesPage = async () => {
     </div>
   )
 }
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic' // to opt out Full Route Cache
 
 export default IssuesPage
