@@ -9,11 +9,11 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
   return (
     <Fragment>
       <Heading>{issue.title}</Heading>
-      <Flex gap='4'>
+      <Flex gap='4' mt='2' className='items-center'>
         <IssueStatusBadge status={issue.status} />
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
-      <Card className='prose max-w-full mt-4'>
+      <Card className='prose max-w-full mt-5'>
         <ReactMarkDown>{issue.description}</ReactMarkDown>
       </Card>
     </Fragment>

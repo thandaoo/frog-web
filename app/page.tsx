@@ -1,6 +1,6 @@
 import { Button, Flex, Heading, Section } from '@radix-ui/themes'
 
-import IssueActions from './issues/IssueActions'
+import IssueActions from './issues/list/IssueActions'
 import Link from 'next/link'
 
 export default function Home () {

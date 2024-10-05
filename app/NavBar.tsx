@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 const NavBar = () => {
   const links = [
     { href: '/', label: 'Dashboard' },
-    { href: '/issues', label: 'Issues' }
+    { href: '/issues/list', label: 'Issues' }
   ]
   const currentPath = usePathname() // this is from Browser API, thus we need 'use client'
 
