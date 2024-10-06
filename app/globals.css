@@ -19,6 +19,10 @@ body {
 }
 
 @layer utilities {
+  .nav-link {
+    @apply text-zinc-400 hover:text-zinc-500 transition-colors
+  }
+
   .text-balance {
     text-wrap: balance;
   }
