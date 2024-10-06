@@ -4,6 +4,7 @@ import './globals.css'
 
 import { Container, Theme } from '@radix-ui/themes'
 
+import AuthProvider from './auth/Provider'
 import Footer from './components/Footer'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
@@ -27,13 +28,15 @@ export default function RootLayout ({
   return (
     <html lang='en' className={inter.variable}>
       <body>
-        <Theme accentColor='grass' grayColor='gray'>
-          <NavBar />
-          <main className='p-5'>
-            <Container>{children}</Container>
-          </main>
-          <Footer />
-        </Theme>
+        <AuthProvider>
+          <Theme accentColor='grass' grayColor='gray'>
+            <NavBar />
+            <main className='p-5'>
+              <Container>{children}</Container>
+            </main>
+            <Footer />
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   )
