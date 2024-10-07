@@ -9,7 +9,7 @@ export default function Home () {
       <Heading size='8'>Welcome to Frog!</Heading>
       <Flex gapX='5'>
         <Button variant='surface'>
-          <Link href='/issues/'>Go to Issue</Link>
+          <Link href='/issues/list'>Go to Issue</Link>
         </Button>
         <IssueActions />
       </Flex>
