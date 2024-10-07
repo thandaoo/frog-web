@@ -7,16 +7,16 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 interface Props {
-  itemsTotal: number
-  itemsPerPage: number
-  currentPage: number
+  totalItems: number // total no. of items
+  itemsPerPage: number // no. of items pr page
+  currentPage: number // current page number
 }
 
-const Pagination = ({ itemsTotal, itemsPerPage, currentPage }: Props) => {
+const Pagination = ({ totalItems, itemsPerPage, currentPage }: Props) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const totalPages = Math.ceil(itemsTotal / itemsPerPage)
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   if (totalPages <= 1) return null
 
