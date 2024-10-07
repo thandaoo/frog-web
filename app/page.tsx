@@ -4,7 +4,11 @@ import IssueActions from './issues/list/IssueActions'
 import Link from 'next/link'
 import Pagination from './components/Pagination'
 
-export default function Home () {
+export default function Home ({
+  searchParams
+}: {
+  searchParams: { page: string }
+}) {
   return (
     <Section className='space-y-5 flex flex-col items-center  bg-slate-100'>
       <Heading size='8'>Welcome to Frog!</Heading>
@@ -14,7 +18,11 @@ export default function Home () {
         </Button>
         <IssueActions />
       </Flex>
-      <Pagination itemsPerPage={20} itemsTotal={100} currentPage={1} />
+      <Pagination
+        itemsPerPage={20}
+        itemsTotal={100}
+        currentPage={parseInt(searchParams.page)}
+      />
     </Section>
   )
 }

@@ -1,5 +1,8 @@
+'use client'
+
 import { Button, Flex, Text } from '@radix-ui/themes'
 import { ChevronLeftIcon, DoubleArrowLeftIcon } from '@radix-ui/react-icons'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import React from 'react'
 
@@ -10,23 +13,54 @@ interface Props {
 }
 
 const Pagination = ({ itemsTotal, itemsPerPage, currentPage }: Props) => {
-  const pageCount = Math.ceil(itemsTotal / itemsPerPage)
-  if (pageCount <= 1) return null
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const totalPages = Math.ceil(itemsTotal / itemsPerPage)
+
+  if (totalPages <= 1) return null
+
+  const changePage = (page: number) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', page.toString())
+    router.push('?' + params.toString())
+  }
+
   return (
     <Flex align='center' gap='2'>
       <Text size='2'>
-        Page {currentPage} of {pageCount}
+        Page {currentPage} of {totalPages}
       </Text>
-      <Button color='gray' variant='soft' disabled={currentPage === 1}>
+      <Button
+        color='gray'
+        variant='soft'
+        disabled={currentPage === 1}
+        onClick={() => changePage(1)}
+      >
         <DoubleArrowLeftIcon />
       </Button>
-      <Button color='gray' variant='soft' disabled={currentPage === 1}>
+      <Button
+        color='gray'
+        variant='soft'
+        disabled={currentPage === 1}
+        onClick={() => changePage(currentPage - 1)}
+      >
         <ChevronLeftIcon />
       </Button>
-      <Button color='gray' variant='soft' disabled={currentPage === pageCount}>
+      <Button
+        color='gray'
+        variant='soft'
+        disabled={currentPage === totalPages}
+        onClick={() => changePage(currentPage + 1)}
+      >
         <ChevronLeftIcon className='rotate-180' />
       </Button>
-      <Button color='gray' variant='soft' disabled={currentPage === pageCount}>
+      <Button
+        color='gray'
+        variant='soft'
+        disabled={currentPage === totalPages}
+        onClick={() => changePage(totalPages)}
+      >
         <DoubleArrowLeftIcon className='rotate-180' />
       </Button>
     </Flex>
