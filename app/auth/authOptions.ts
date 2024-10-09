@@ -17,8 +17,15 @@ const authOptions: NextAuthConfig={
    callbacks: {
     authorized: async ({ auth }) => {
       // Logged in users are authenticated, otherwise redirect to login page
-      return !!auth
+      return !!auth 
     },
+    async redirect({ url, baseUrl }) {
+    // Allows relative callback URLs
+    if (url.startsWith("/")) return `${baseUrl}${url}`
+    // Allows callback URLs on the same origin
+    else if (new URL(url).origin === baseUrl) return url
+    return baseUrl
+  }     
   },
 }
 

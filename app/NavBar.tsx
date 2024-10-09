@@ -3,18 +3,19 @@
 import {
   Avatar,
   Box,
+  Button,
   Container,
   DropdownMenu,
   Flex,
   Text
 } from '@radix-ui/themes'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { GiFrogFoot } from 'react-icons/gi'
 import Link from 'next/link'
 import Skeleton from '@/app/components/Skeleton'
 import classNames from 'classnames'
 import { usePathname } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 
 const NavBar = () => {
   return (
@@ -36,14 +37,21 @@ const NavBar = () => {
 
 const AuthStatus = () => {
   const { status, data: session } = useSession()
-
+  const handleSignOut = () => {
+    signOut({ callbackUrl: window.location.origin })
+  }
+  const handleSignIn = () => {
+    const redirectTo = '/issues/list'
+    signIn('google', { redirectTo: redirectTo })
+  }
   if (status === 'loading') return <Skeleton width='3rem' />
 
   if (status === 'unauthenticated')
     return (
-      <Link className='nav-link' href='/api/auth/signin'>
-        Login
-      </Link>
+      // <Link className='nav-link' href='/api/auth/signin'>
+      //   Login
+      // </Link>
+      <Button onClick={handleSignIn}>Login</Button>
     )
 
   return (
@@ -64,7 +72,8 @@ const AuthStatus = () => {
             <Text size='2'>{session!.user!.email}</Text>
           </DropdownMenu.Label>
           <DropdownMenu.Item>
-            <Link href='/api/auth/signout'>Logout</Link>
+            {/* <Link href='/api/auth/signout'>Logout</Link> */}
+            <Button onClick={handleSignOut}>Logout</Button>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
