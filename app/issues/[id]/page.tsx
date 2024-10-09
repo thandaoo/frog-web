@@ -5,6 +5,7 @@ import DeleteIssueButton from './DeleteIssueButton'
 import EditIssueButton from './EditIssueButton'
 import IssueDetails from './IssueDetails'
 import { auth } from '@/auth'
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import prisma from '@/prisma/client'
 
@@ -12,11 +13,15 @@ interface Props {
   params: { id: string }
 }
 
+const fetchUser = cache((issueId: number) =>
+  prisma.issue.findUnique({
+    where: { id: issueId }
+  })
+)
+
 const IssueDetailsPage = async ({ params }: Props) => {
   const session = await auth()
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) }
-  })
+  const issue = await fetchUser(parseInt(params.id))
   if (!issue) notFound() // no need return cuz the return type is 'never'
   return (
     <Grid columns={{ initial: '1', sm: '5' }} gap='5'>
@@ -36,9 +41,7 @@ const IssueDetailsPage = async ({ params }: Props) => {
   )
 }
 export async function generateMetadata ({ params }: Props) {
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) }
-  })
+  const issue = await fetchUser(parseInt(params.id))
   return {
     title: 'Issue: ' + issue?.title,
     description: 'Details of issue ' + issue?.id
