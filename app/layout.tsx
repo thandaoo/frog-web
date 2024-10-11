@@ -5,7 +5,7 @@ import './globals.css'
 import { Container, Theme } from '@radix-ui/themes'
 
 import AuthProvider from './auth/Provider'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import NavBar from './NavBar'
@@ -36,7 +36,7 @@ export default function RootLayout ({
               <main className='p-5'>
                 <Container>{children}</Container>
               </main>
-              <Footer />
+              {/* <Footer /> */}
             </Theme>
           </AuthProvider>
         </QueryClientProvider>
