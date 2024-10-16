@@ -17,16 +17,9 @@ export default async function Home () {
   const closed = await prisma.issue.count({
     where: { status: 'CLOSED' }
   })
-  {
-    /* <Section className='space-y-3 flex flex-col items-center  bg-slate-100'>
-        <Heading size='8'>Welcome to Frog!</Heading>
-        <Flex gapX='5'>
-          <Button size='3' variant='surface'>
-            <Link href='/issues/list'>Go to Issues</Link>
-          </Button>
-        </Flex>
-      </Section> */
-  }
+  console.log('open issues', open)
+  console.log('closed issues', closed)
+  console.log('in progress issues', inProgress)
 
   return (
     <Grid columns={{ initial: '1', md: '2' }} gap='5'>
