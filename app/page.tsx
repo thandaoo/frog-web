@@ -39,6 +39,7 @@ export default async function Home () {
     </Grid>
   )
 }
+export const dynamic = 'force-dynamic' // to opt out Full Route Cache
 
 export const metadata: Metadata = {
   title: 'Frog - homepage',
