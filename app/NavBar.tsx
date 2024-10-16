@@ -51,7 +51,9 @@ const AuthStatus = () => {
       // <Link className='nav-link' href='/api/auth/signin'>
       //   Login
       // </Link>
-      <Button onClick={handleSignIn}>Login</Button>
+      <Button className='hover:cursor-pointer' onClick={handleSignIn}>
+        Login
+      </Button>
     )
 
   return (
@@ -71,9 +73,11 @@ const AuthStatus = () => {
           <DropdownMenu.Label>
             <Text size='2'>{session!.user!.email}</Text>
           </DropdownMenu.Label>
-          <DropdownMenu.Item>
+          <DropdownMenu.Item className='flex flex-1'>
             {/* <Link href='/api/auth/signout'>Logout</Link> */}
-            <Button onClick={handleSignOut}>Logout</Button>
+            <button className='w-full py-2 ' onClick={handleSignOut}>
+              Logout
+            </button>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
